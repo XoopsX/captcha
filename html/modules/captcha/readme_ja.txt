@@ -1,15 +1,24 @@
-$Id: readme_ja.txt,v 1.1 2012/03/31 16:04:15 ohwada Exp $
+$Id: readme_ja.txt,v 1.2 2012/03/31 17:51:20 ohwada Exp $
 
 =================================================
 Title:   captcha_x for XOOPS
 =================================================
 
 =================================================
-Version: 0.14
-Date:    2008-01-26
+Version: 0.20
+Date:    2012-03-31
 Author:  Kenichi OHWADA
 URL:     http://linux.ohwada.jp/
 Email:   webmaster@ohwada.jp
+=================================================
+
+1. PHP 5.3 対応
+(1) new の返り値を参照で代入することは、推奨されない
+
+
+=================================================
+Version: 0.14
+Date:    2008-01-26
 =================================================
 
 1. バグ修正
@@ -22,9 +31,6 @@ http://linux.ohwada.jp/modules/newbb/viewtopic.php?topic_id=765&forum=11
 =================================================
 Version: 0.13
 Date:    2007-09-07
-Author:  Kenichi OHWADA
-URL:     http://linux.ohwada.jp/
-Email:   webmaster@ohwada.jp
 =================================================
 
 1. バグ修正
@@ -36,9 +42,6 @@ http://linux.ohwada.jp/modules/newbb/viewtopic.php?viewmode=flat&topic_id=675&fo
 =================================================
 Version: 0.12
 Date:    2007-06-09
-Author:  Kenichi OHWADA
-URL:     http://linux.ohwada.jp/
-Email:   webmaster@ohwada.jp
 =================================================
 
 1. 多言語

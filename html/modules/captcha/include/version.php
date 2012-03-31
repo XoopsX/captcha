@@ -1,5 +1,5 @@
 <?php
-// $Id: version.php,v 1.1 2012/03/31 16:04:15 ohwada Exp $
+// $Id: version.php,v 1.2 2012/03/31 17:51:20 ohwada Exp $
 
 //=========================================================
 // Captcha Module
@@ -9,7 +9,7 @@
 // --- define version begin ---
 if( !defined('CAPTCHA_VERSION') ) 
 {
-	define('CAPTCHA_VERSION', '0.14');
+	define('CAPTCHA_VERSION', '0.20');
 }
 // --- define version end ---
 
