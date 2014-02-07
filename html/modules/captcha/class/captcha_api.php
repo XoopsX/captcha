@@ -32,7 +32,7 @@ class captcha_api
 //---------------------------------------------------------
 function captcha_api()
 {
-	$this->_server = XOOPS_URL . '/captcha.php';
+	$this->_server = XOOPS_URL . '/images/captcha.php';
 }
 
 function &getInstance()

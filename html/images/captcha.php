@@ -9,23 +9,14 @@
 // 2007-02-18 K.OHWADA
 //=========================================================
 
-if ( file_exists('mainfile.php') ) 
-{
-	include 'mainfile.php';
-}
-elseif ( file_exists('../mainfile.php') ) 
+if ( file_exists('../mainfile.php') ) 
 {
 	include '../mainfile.php';
-}
-elseif ( file_exists('../../mainfile.php') ) 
-{
-	include '../../mainfile.php';
 }
 else
 {
 	exit;
 }
-
 include_once XOOPS_ROOT_PATH.'/modules/captcha/class/captcha_x/class.captcha_x.php';
 
 // Assigning the return value of new by reference is deprecated
