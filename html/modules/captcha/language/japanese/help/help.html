@@ -1,0 +1,174 @@
+<h3>CAPTCHA 画像認証モジュール</h3>
+
+<pre>
+このモジュールは CAPTCHA のライブラリです。
+CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart)
+はコメント・スパム対策手法の１つです。
+
+</pre>
+<h4>XOOPS Cube Legacy のユーザーモジュールのテンプレート編集について</h4>
+
+<p>CAPTCHA モジュールの一般設定で、ユーザーモジュールのユーザー登録画面に CAPTCHA 認証を有効にする設定にした場合のユーザーモジュールのユーザー登録時のテンプレート編集について説明します。</p>
+
+<p>&nbsp;</p>
+
+<ul>
+	<li>ユーザーモジュールのユーザー登録時のテンプレートは「user_register_form.html」です。</li>
+</ul>
+
+<ul>
+	<li>altsys または、互換レンダーシステムのテンプレート管理にて、使用中の当該テンプレートを編集し、確実に CAPTCHA 画像と入力フォームが表示されるようにして表示と動作の確認を必ずして下さい。</li>
+</ul>
+
+<ul>
+	<li>テンプレートに追加する内容は以下の通りです。
+	<ul>
+		<li>CAPTCHA画像とフォーム(必須): <em><strong>&lt;{captcha_make_img_input}&gt;</strong></em><br />
+		画像に付記する文言を変更したい場合は &lt;{captcha_make_img_input note=&quot;お好みの文言&quot;}&gt; とすることもできます。</li>
+		<li>キャプション(任意): <em><strong>&lt;{captcha_make_caption}&gt;</strong></em></li>
+	</ul>
+	</li>
+</ul>
+
+<h5>「user_register_form.html」デフォルトのテンプレートを編集したサンプルは次のようになります。</h5>
+
+<pre>
+&lt;tr&gt;
+  &lt;td class=&quot;head&quot;&gt;&lt;{captcha_make_caption}&gt;&lt;/td&gt;
+  &lt;td class=&quot;&lt;{cycle values=&quot;odd,even&quot;}&gt;&quot;&gt;
+    &lt;{captcha_make_img_input}&gt;
+  &lt;/td&gt;
+&lt;/tr&gt;
+</pre>
+<hr />
+<p>を追加して次のようになります。</p>
+<hr />
+<form><textarea style="width:98%;height:15em;" readonly="readonly">
+&lt;{if $actionForm-&gt;hasError()}&gt;
+&lt;div class=&quot;errorMsg&quot;&gt;
+  &lt;ul&gt;
+    &lt;{foreach item=message from=$actionForm-&gt;getErrorMessages()}&gt;
+    &lt;li&gt;&lt;{$message}&gt;&lt;/li&gt;
+    &lt;{/foreach}&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;{/if}&gt;
+
+&lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+&lt;{xoops_token form=$actionForm}&gt;
+&lt;table class=&quot;outer&quot; width=&quot;100%&quot;&gt;
+  &lt;tr&gt;
+    &lt;th colspan=&quot;2&quot; style=&quot;text-align:center;&quot;&gt;&lt;{$smarty.const._MD_USER_LANG_USERREG}&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;head&quot;&gt;&lt;{$smarty.const._MD_USER_LANG_NICKNAME}&gt;&lt;/td&gt;
+    &lt;td class=&quot;&lt;{cycle values=&quot;odd,even&quot;}&gt;&quot;&gt;&lt;{xoops_input maxlength=25 name=uname value=$actionForm-&gt;get('uname')}&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;head&quot;&gt;&lt;{$smarty.const._MD_USER_LANG_EMAIL}&gt;&lt;/td&gt;
+    &lt;td class=&quot;&lt;{cycle values=&quot;odd,even&quot;}&gt;&quot;&gt;
+      &lt;{xoops_input name=email size=30 maxlength=60 value=$actionForm-&gt;get('email')}&gt;&lt;br /&gt;
+      &lt;label&gt;&lt;{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm-&gt;get('user_viewemail')}&gt; &lt;{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}&gt;&lt;/label&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;head&quot;&gt;&lt;{$smarty.const._MD_USER_LANG_WEBSITE}&gt;&lt;/td&gt;
+    &lt;td class=&quot;&lt;{cycle values=&quot;odd,even&quot;}&gt;&quot;&gt;&lt;{xoops_input name=url size=30 maxlength=100 value=$actionForm-&gt;get('url')}&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;head&quot;&gt;&lt;{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}&gt;&lt;/td&gt;
+    &lt;td class=&quot;&lt;{cycle values=&quot;odd,even&quot;}&gt;&quot;&gt;
+      &lt;select name=&quot;timezone_offset&quot;&gt;
+        &lt;{xoops_optionsArray id=timezone_offset label=zone_name value=offset from=$timezones default=$actionForm-&gt;get('timezone_offset')}&gt;
+      &lt;/select&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;head&quot;&gt;&lt;{$smarty.const._MD_USER_LANG_PASSWORD}&gt;&lt;/td&gt;
+    &lt;td class=&quot;&lt;{cycle values=&quot;odd,even&quot;}&gt;&quot;&gt;
+      &lt;{xoops_input type=password name=pass value=$actionForm-&gt;get('pass') size=10 maxlength=32}&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;head&quot;&gt;&lt;{$smarty.const._MD_USER_LANG_VERIFYPASS}&gt;&lt;/td&gt;
+    &lt;td class=&quot;&lt;{cycle values=&quot;odd,even&quot;}&gt;&quot;&gt;
+      &lt;{xoops_input type=password name=vpass value=$actionForm-&gt;get('vpass') size=10 maxlength=32}&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+
+&lt;{* ---- Inserted - XCube Legacy 2.1.6RC1 - 23Sep2008  ---- *}&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;head&quot;&gt;&lt;{$smarty.const._MD_USER_LANG_USER_MAILOK}&gt;&lt;/td&gt;
+    &lt;td class=&quot;&lt;{cycle values=&quot;odd,even&quot;}&gt;&quot;&gt;
+      &lt;label&gt;&lt;{xoops_input type=radio name=user_mailok value=1 default=$actionForm-&gt;get('user_mailok')}&gt;&lt;{$smarty.const._YES}&gt;&lt;/label&gt;
+      &lt;label&gt;&lt;{xoops_input type=radio name=user_mailok value=0 default=$actionForm-&gt;get('user_mailok')}&gt;&lt;{$smarty.const._NO}&gt;&lt;/label&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;{* ---- /Inserted ---- *}&gt;
+
+  &lt;{if $enableAgree}&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;head&quot;&gt;&lt;{$smarty.const._MD_USER_LANG_DISCLAIMER}&gt;&lt;/td&gt;
+    &lt;td class=&quot;&lt;{cycle values=&quot;odd,even&quot;}&gt;&quot;&gt;
+      &lt;{xoops_textarea name=disclaimer rows=8 cols=50 readonly=true value=$disclaimer}&gt;&lt;br /&gt;
+      &lt;label&gt;&lt;{xoops_input type=checkbox name=agree value=1 default=$actionForm-&gt;get('agree')}&gt; &lt;{$smarty.const._MD_USER_MESSAGE_IAGREE}&gt;&lt;/label&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;{/if}&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;head&quot;&gt;&lt;{captcha_make_caption}&gt;&lt;/td&gt;
+    &lt;td class=&quot;&lt;{cycle values=&quot;odd,even&quot;}&gt;&quot;&gt;
+      &lt;{captcha_make_img_input}&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td colspan=&quot;2&quot; class=&quot;foot&quot; style=&quot;text-align:center;&quot;&gt;
+      &lt;input type=&quot;submit&quot; value=&quot;&lt;{$smarty.const._MD_USER_LANG_SUBMIT}&gt;&quot; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;
+</textarea></form>
+<hr />
+<pre>
+
+● 対応しているモジュール
+- xoops_comment  ハック版 of XOOPS Cube 2.0.16a JP
+- liaise 1.26 ハック版
+- newbb  2.02 ハック版
+- wbelinks 1.40
+
+
+● 説明
+CAPTCHAのクラスには captcha_x を採用した
+  http://www.phpclasses.org/browse/package/3023.html
+フォントには Standard 35 TrueType Fonts を採用した
+  http://www.rops.org/download/std35ttf.zip
+
+
+画像フォームの表示方法
+-----
+include_once XOOPS_ROOT_PATH.'/modules/captcha/include/api.php';
+$captcha_api = captcha_api::getInstance();
+$img_input = $captcha_api->make_img_input();
+$img_input を表示
+------
+
+画像認証のチェック方法
+-----
+include_once XOOPS_ROOT_PATH.'/modules/captcha/include/api.php';
+$captcha_api = captcha_api::getInstance();
+if ( !$captcha_api->validate_post() ) {
+  エラー処理
+}
+-----
+
+
+● インストール
+モジュールの形態をとっていますが、実態はプログラム・ライブラリです。
+モジュール・インストールをしても、しなくとも動作します。
+インストールした場合は、管理者画面にて、プログラムが正常に動作するか確認できます。
+
+(1) 通常のモジュールと同様に、modules ディレクトリの下に設置する。
+(2) html/images/captcha.php を XOOPS_ROOT_PATH/images ディレクトリに設置する。
+</pre>

@@ -58,7 +58,7 @@ else
 	echo '<span style="color:#ff0000">GD: not loaded</span><br />'."\n";
 }
 
-if ( !file_exists(XOOPS_ROOT_PATH.'/captcha.php') )
+if ( !file_exists(XOOPS_ROOT_PATH.'/images/captcha.php') )
 {
 	echo "<br />\n";
 	xoops_error( "Please copy captcha.php to ".XOOPS_ROOT_PATH );

@@ -1,0 +1,52 @@
+<h4>CAPTCHA Module</h4>
+
+<pre>
+The purpose of this project is the counter measure of the comment spam,
+using CAPTCHA technique
+
+This module is library for CAPTCHA.
+CAPTCHA, Completely Automated Public Turing test to tell Computers and Humans Apart,
+is one of technique for anti-spam.
+
+
+* suported module *
+- hack of xoops_comment of XOOPS Cube 2.0.16a JP
+- hack of liaise 1.26
+- hack of newbb  2.02
+- wbelinks 1.40
+
+
+* description *
+adopted captcha_x for class lib
+  http://www.phpclasses.org/browse/package/3023.html
+adopted Standard 35 TrueType Fonts for fonts lib
+  http://www.rops.org/download/std35ttf.zip
+
+
+The view method of the Captcha form
+-----
+include_once XOOPS_ROOT_PATH.'/modules/captcha/include/api.php';
+$captcha_api = captcha_api::getInstance();
+$img_input = $captcha_api->make_img_input();
+Show $img_input
+------
+
+The check method of the Captcha
+-----
+include_once XOOPS_ROOT_PATH.'/modules/captcha/include/api.php';
+$captcha_api = captcha_api::getInstance();
+if ( !$captcha_api->validate_post() ) {
+  Error Process
+}
+-----
+
+
+* install *
+This module is adopting the style of the module,
+but the actual state is program library.
+It works even if you install this module, or not.
+When installing this module, you can confirm to work a program normally in admin page.
+
+(1) Like usual module, install this module under "modules" directory.
+(2) Cpoy html/images/captcha.php under XOOPS_ROOT_PATH/images directory.
+</pre>
