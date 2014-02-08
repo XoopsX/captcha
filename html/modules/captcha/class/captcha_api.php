@@ -74,7 +74,7 @@ function make_img_input()
 function make_img()
 {
 	$onclick = "javasript:this.src='". $this->_server ."?'+Math.random();";
-	$img     = '<img src="' . $this->_server . '" onclick="' . $onclick . '" alt="'. $this->_alt . '" style="' . $this->_style . '" />';
+	$img     = '<img src="' . $this->_server . '?' . time() . '" onclick="' . $onclick . '" alt="'. $this->_alt . '" style="' . $this->_style . '" />';
 	return $img;
 }
 
