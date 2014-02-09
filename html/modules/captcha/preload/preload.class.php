@@ -23,8 +23,8 @@ class captcha_preload extends XCube_ActionFilter
 	
 	function registUserSetValidator(&$validators) {
 		$handler =& xoops_gethandler('config');
-        $mConfigs = $handler->getConfigsByDirname('captcha');
-        if ($mConfigs['registUser']) {
+		$mConfigs = $handler->getConfigsByDirname('captcha');
+		if ($mConfigs['registUser']) {
 			include_once XOOPS_ROOT_PATH.'/modules/captcha/include/api.php';
 			$captcha_api = captcha_api::getInstance();
 			$validators[] = array(
