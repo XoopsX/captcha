@@ -9,7 +9,7 @@
 // --- define version begin ---
 if( !defined('CAPTCHA_VERSION') ) 
 {
-	define('CAPTCHA_VERSION', '0.21');
+	define('CAPTCHA_VERSION', '0.22');
 }
 // --- define version end ---
 
