@@ -35,7 +35,7 @@ function captcha_api()
 	$this->_server = XOOPS_URL . '/images/captcha.php';
 }
 
-function &getInstance()
+public static function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) 
